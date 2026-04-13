@@ -5,6 +5,8 @@ import json
 #when it is safe :)
 #lmk if u find any errors in my code ok thx u
 
+# adding comment
+
 #hint: btw the output.json file will only be created if there are no errors 
 #to run the code do --> python test_input_handler.py -->in the termila 
 #contact me if u have question inshAllah
