@@ -11,7 +11,7 @@ import json
 #to run the code do --> python test_input_handler.py -->in the termila 
 #contact me if u have question inshAllah
 
-#function: rread and parse JSON 
+#function: read and parse JSON 
 def read_input(file_path):
     """reads and parses the JSON input file
     returns a dictionary of data
