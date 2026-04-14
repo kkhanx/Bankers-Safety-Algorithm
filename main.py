@@ -26,7 +26,7 @@ def main():
             data["max"]
         )
 
-        # Step 4: Format final output (IMPORTANT for grading)
+        # Step 4: Format final output 
         if result["state"] == "SAFE":
             output = {
                 "state": "SAFE",
