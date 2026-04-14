@@ -1,4 +1,6 @@
-from input_handler import read_input, validate_input, format_processes, write_output
+from input_handler import read_input, validate_input, write_output
+from safety_algo import run_safety_check
+
 
 def test_all():
     print("- TESTING INPUT HANDLER -")
@@ -15,28 +17,24 @@ def test_all():
         print("Validation: FAILED", e)
         return
 
-    #format processes
-    processes = format_processes(data["processes"])
-    print("Formatted Processes:", processes)
+    raw = run_safety_check(
+        data["available"],
+        data["allocation"],
+        data["max"],
+    )
+    if raw["state"] == "SAFE":
+        result = {
+            "state": "SAFE",
+            "safe_sequence": raw["safe_sequence"],
+        }
+    else:
+        result = {
+            "state": "DEADLOCK",
+            "deadlocked_processes": raw["deadlocked_processes"],
+        }
 
-    #output (fake example result btw and only prints when there are no basic errors)
-    #we still need to code the actual deadlock and safe logic i think
-    result = {
-        "state": "SAFE",
-        "safe_sequence": processes
-    }
-   
-   #code for the deadlock example 
-    """
-    result = {
-    "state": "DEADLOCK" ,
-    "deadlocked_process": [" P2 " , " P3 "]
-    }
-    """
-    
-    #write output to the output.json file
     write_output("output.json", result)
-    print("Output written to output.json: \n",result)
+    print("Output written to output.json: \n", result)
 
 if __name__ == "__main__":
     test_all()
