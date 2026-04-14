@@ -6,7 +6,7 @@
 - Yumna
 - Kulsum
 - Yusriyah
-- Najiyah
+- Najiya
 
 ---
 
