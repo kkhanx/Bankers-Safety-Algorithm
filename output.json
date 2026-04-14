@@ -1,8 +1,7 @@
 {
-    "state": "SAFE",
-    "safe_sequence": [
+    "state": "DEADLOCK",
+    "deadlocked_processes": [
         "P1",
-        "P2",
         "P3"
     ]
 }
