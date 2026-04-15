@@ -135,9 +135,20 @@ python3 main.py input.json > output.json
 
 ## Design Decisions
 
-- Modular structure separating input, computation, and algorithm
-- Deterministic tie-breaking using smallest process index
-- Input validation ensures correctness and prevents invalid states
+- The project follows a modular design, separating responsibilities into different files:
+  - input_handler.py for input/output and validation
+  - need_calculator.py for computing the need matrix
+  - safety_algo.py for the Banker's safety algorithm
+    
+- This improves readability, maintainability, and makes debugging easier.
+- The safety algorithm uses a work vector and finish array to simulate process execution step-by-step.
+  
+- Input validation is implemented to ensure:
+  - Correct dimensions of matrices
+  - No negative values
+  - Allocation does not exceed maximum demand
+    
+- Output formatting is handled separately to strictly match required JSON format
 
 ---
 
