@@ -1,8 +1,20 @@
 import sys
 import json
+import re
 
 from input_handler import read_input, validate_input
 from safety_algo import run_safety_check
+
+
+def pretty_json(obj):
+    text = json.dumps(obj, indent=2)
+
+    def collapse_array(match):
+        content = match.group(1)
+        items = [item.strip().rstrip(',') for item in content.splitlines()]
+        return "[" + ", ".join(items) + "]"
+
+    return re.sub(r'\[\n([^\[\]]*?)\n\s*\]', collapse_array, text)
 
 
 def main():
@@ -39,7 +51,7 @@ def main():
             }
 
         # Step 5: Print JSON output
-        print(json.dumps(output, indent=4))
+        print(pretty_json(output))
 
     except Exception as e:
         print(json.dumps({"error": str(e)}))
