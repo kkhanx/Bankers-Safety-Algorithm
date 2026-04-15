@@ -70,9 +70,15 @@ This ensures deterministic output.
 ## How to Run
 
 ### Basic run
+Linux/MacOS
 
 ```
 python3 main.py input.json
+```
+
+Windows
+```
+python main.py input.json
 ```
 
 ### Required assignment format
