@@ -1,17 +1,7 @@
 import json
 #README
-#hey teamates you can edit the values in input.json to test of the code
-#like change the numbers to see when it deadlocks and
-#when it is safe :)
-#lmk if u find any errors in my code ok thx u
 
-# adding comment
-
-#hint: btw the output.json file will only be created if there are no errors 
-#to run the code do --> python test_input_handler.py -->in the termila 
-#contact me if u have question inshAllah
-
-#function: read and parse JSON 
+# Read the input JSON file and convert it into a Python dictionary
 def read_input(file_path):
     """reads and parses the JSON input file
     returns a dictionary of data
@@ -26,7 +16,7 @@ def read_input(file_path):
         raise Exception("Error: Invalid JSON format.")
 
 
-#function: validate input data
+# Check that the input data has the required structure and valid values
 def validate_input(data):
     """validates the structure and values of input JSON
     raises Exception if invalid
@@ -34,32 +24,35 @@ def validate_input(data):
 
     required_keys = ["processes", "resources", "available", "max", "allocation"]
 
-    #check all required keys exist
+    # Mae sure all required keys exist in the JSON input
     for key in required_keys:
         if key not in data:
             raise Exception(f"Error: Missing key '{key}' in input.")
 
+    # Extract values from the input dictionary
     processes = data["processes"]
     resources = data["resources"]
     available = data["available"]
     max_matrix = data["max"]
     allocation = data["allocation"]
 
-    #validate types
+    # Check that the number of processes is a positive integer
     if not isinstance(processes, int) or processes <= 0:
         raise Exception("Error: 'processes' must be a positive integer.")
 
+    #Check that the number of resource types is a positive integer
     if not isinstance(resources, int) or resources <= 0:
         raise Exception("Error: 'resources' must be a positive integer.")
 
-    #validate available vector
+    # Check that the available vector matches the number of resources
     if len(available) != resources:
         raise Exception("Error: 'available' length must match number of resources.")
 
-    #validate matrices dimensions
+    # Check that max and allocation have the correct number of the process rows
     if len(max_matrix) != processes or len(allocation) != processes:
         raise Exception("Error: 'max' and 'allocation' must match number of processes.")
 
+    # Check that each row in both matrices has the correct number of resource columns
     for i in range(processes):
         if len(max_matrix[i]) != resources:
             raise Exception(f"Error: Row {i} of 'max' must have {resources} resources.")
@@ -67,27 +60,30 @@ def validate_input(data):
         if len(allocation[i]) != resources:
             raise Exception(f"Error: Row {i} of 'allocation' must have {resources} resources.")
 
-    #validate values (non-negative integers)
+    # Check that available resources are not negative
     for value in available:
         if value < 0:
             raise Exception("Error: 'available' cannot contain negative values.")
 
+    # Check that max/allocation values are valid
     for i in range(processes):
         for j in range(resources):
+            # Ensure resource values are not be negative
             if max_matrix[i][j] < 0 or allocation[i][j] < 0:
                 raise Exception("Error: 'max' and 'allocation' cannot contain negative values.")
 
+            # A process cannot already hold more than its declared maximum
             if allocation[i][j] > max_matrix[i][j]:
                 raise Exception(f"Error: allocation[{i}][{j}] cannot exceed max[{i}][{j}].")
 
     return True
 
-#function: format process names
+# Create process names in the format P1, P2, P3, ...
 def format_processes(n):
     """returns list of process names: ["P1", "P2", ..., "Pn"]"""
     return [f"P{i+1}" for i in range(n)]
 
-#function: write output JSON
+# Write the result dictionary to an output JSON file
 def write_output(file_path, result):
     """writes result dictionary to JSON file in required format """
     try:
