@@ -113,7 +113,7 @@ python3 main.py input.json > output.json
 
 ## Output Format
 
-### SAFE state
+### if SAFE state
 
 ```json
 {
@@ -122,7 +122,7 @@ python3 main.py input.json > output.json
 }
 ```
 
-### DEADLOCK state
+### if DEADLOCK state
 
 ```json
 {
