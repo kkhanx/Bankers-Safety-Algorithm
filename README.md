@@ -136,9 +136,19 @@ python3 main.py input.json > output.json
 ## Design Decisions
 
 - The project follows a modular design, separating responsibilities into different files:
-  - input_handler.py for input/output and validation
-  - need_calculator.py for computing the need matrix
-  - safety_algo.py for the Banker's safety algorithm
+  - input_handler.py for input/output handling and validation of the JSON data (ensuring correct dimensions, non-negative values, and allocation does not exceed maximum demand)
+    
+  - need_calculator.py for computing the Need matrix using the formula Need = Max − Allocation
+    
+  - safety_algo.py for implementing the Banker’s Safety Algorithm to determine whether the system is in a SAFE state or DEADLOCK and to generate the safe sequence or list of deadlocked processes
+    
+  - test_input_handler.py for unit testing the input handling and validation logic using predefined valid and invalid test cases
+    
+  - main.py as the entry point of the program, coordinating all modules by reading input, computing the need matrix, running the safety algorithm, and producing the final output
+    
+  - input.json as the input file containing the system configuration, including processes, resources, available instances, maximum demand, and current allocation
+    
+  - output.json as the output file where the program writes the result, indicating whether the system is SAFE (with a safe sequence) or in DEADLOCK (with deadlocked processes)
     
 - This improves readability, maintainability, and makes debugging easier
 - The safety algorithm uses a work vector and finish array to simulate process execution step-by-step
