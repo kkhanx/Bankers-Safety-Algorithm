@@ -140,8 +140,8 @@ python3 main.py input.json > output.json
   - need_calculator.py for computing the need matrix
   - safety_algo.py for the Banker's safety algorithm
     
-- This improves readability, maintainability, and makes debugging easier.
-- The safety algorithm uses a work vector and finish array to simulate process execution step-by-step.
+- This improves readability, maintainability, and makes debugging easier
+- The safety algorithm uses a work vector and finish array to simulate process execution step-by-step
   
 - Input validation is implemented to ensure:
   - Correct dimensions of matrices
