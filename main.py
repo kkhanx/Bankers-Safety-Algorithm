@@ -9,10 +9,10 @@ from safety_algo import run_safety_check
 # This version also collapses simple arrays onto one line for cleaner output
 def pretty_json(obj):
 
-    #First convert the object to indented JSON text
+    # First convert the object to indented JSON text
     text = json.dumps(obj, indent=2)
 
-    #Helper function used by re.sub to collapse multi-line
+    # Helper function used by re.sub to collapse multi-line
     def collapse_array(match):
 
         # Get the inside content of the matched array 
@@ -68,10 +68,10 @@ def main():
         print(pretty_json(output))
 
     except Exception as e:
-        #if any error happens, print it as JSON and exit with an error code
+        # If any error happens, print it as JSON and exit with an error code
         print(json.dumps({"error": str(e)}))
         sys.exit(1)
 
-#Run main() only when this file is executed directly
+# Run main() only when this file is executed directly
 if __name__ == "__main__":
     main()

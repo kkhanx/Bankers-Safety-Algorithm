@@ -1,11 +1,8 @@
 import json
-#README
 
 # Read the input JSON file and convert it into a Python dictionary
 def read_input(file_path):
-    """reads and parses the JSON input file
-    returns a dictionary of data
-    """
+    
     try:
         with open(file_path, 'r') as file:
             data = json.load(file)
@@ -18,13 +15,10 @@ def read_input(file_path):
 
 # Check that the input data has the required structure and valid values
 def validate_input(data):
-    """validates the structure and values of input JSON
-    raises Exception if invalid
-    """
-
+    
     required_keys = ["processes", "resources", "available", "max", "allocation"]
 
-    # Mae sure all required keys exist in the JSON input
+    # Make sure all required keys exist in the JSON input
     for key in required_keys:
         if key not in data:
             raise Exception(f"Error: Missing key '{key}' in input.")

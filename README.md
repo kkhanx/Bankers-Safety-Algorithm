@@ -60,7 +60,7 @@ This ensures deterministic output.
 ├── safety_algo.py
 ├── main.py
 ├── input.json
-├── output.json (answer generated here after runnning)
+├── output.json
 └── README.md
 ```
 

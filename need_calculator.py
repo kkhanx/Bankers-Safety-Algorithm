@@ -1,8 +1,6 @@
 # Calculate the need matrix using: 
-# need = max - allocation
 
 def calculate_need(max_matrix, allocation):
-    """calculates and return the need matrix"""
 
     # Number of processes = number of rows in the matrix
     processes = len(max_matrix)
@@ -16,7 +14,7 @@ def calculate_need(max_matrix, allocation):
     # Compute the remaining resources needed for each process
     for i in range(processes):
         for j in range(resources):
-            #need = max - allocation (remaining resources needed)
+            # need = max - allocation (remaining resources needed)
             need_matrix[i][j] = max_matrix[i][j] - allocation[i][j]
 
     return need_matrix

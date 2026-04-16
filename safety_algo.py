@@ -1,27 +1,23 @@
-"""Banker's safety algorithm:Determines whether the system is SAFE or in DEADLOCK using the need, allocation,
-and available resources.
+# Banker's safety algorithm: Determines whether the system is SAFE or in DEADLOCK using the need, allocation,
+# and available resources.
 
-Tie-breaking rule:
-If multiple processes can run, choose the one with the smallest index first.
-"""
+# Tie-breaking rule:
+# If multiple processes can run, choose the one with the smallest index first.
 
 from need_calculator import calculate_need
 
 
 # Check whether a process's need can be satisfied with the current work vector
 def _need_leq_work(need_row, work):
-    """Return True if need_row[j] <= work[j] for every resource j."""
+    # Return True if need_row[j] <= work[j] for every resource j
     return all(need_row[j] <= work[j] for j in range(len(work)))
 
 # Run the Banker's safety check 
 def run_safety_check(available, allocation, max_matrix):
-    """
-    Run the Banker's safety algorith. 
 
-    Returns:
-        SAFE result with safe_Sequence if all processes can finish
-        DEADLOCK result with deadlock_processes otherwise 
-    """
+    # Returns:
+        # SAFE result with safe_Sequence if all processes can finish
+        # DEADLOCK result with deadlock_processes otherwise 
 
     # First compute the need matrix
     need_matrix = calculate_need(max_matrix, allocation)
@@ -41,7 +37,7 @@ def run_safety_check(available, allocation, max_matrix):
     # Store the order in which processes safely complete
     safe_sequence = []
 
-    # Keep trying to fid a process that can finish 
+    # Keep trying to find a process that can finish 
     while True:
         chosen = None
         
@@ -75,7 +71,7 @@ def run_safety_check(available, allocation, max_matrix):
             "safe_sequence": safe_sequence,
         }
 
-    #Otherwise, any unfinished process is considered deadlocked
+    # Otherwise, any unfinished process is considered deadlocked
     deadlocked = [f"P{i + 1}" for i in range(n) if not finish[i]]
     return {
         "state": "DEADLOCK",
