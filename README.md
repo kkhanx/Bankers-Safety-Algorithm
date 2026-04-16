@@ -60,8 +60,7 @@ This ensures deterministic output.
 ├── safety_algo.py
 ├── main.py
 ├── input.json
-├── output.json
-├── test_input_handler.py
+├── output.json (answer generated here after runnning)
 └── README.md
 ```
 
@@ -141,8 +140,6 @@ python3 main.py input.json > output.json
   - need_calculator.py for computing the Need matrix using the formula Need = Max − Allocation
     
   - safety_algo.py for implementing the Banker’s Safety Algorithm to determine whether the system is in a SAFE state or DEADLOCK and to generate the safe sequence or list of deadlocked processes
-    
-  - test_input_handler.py for unit testing the input handling and validation logic using predefined valid and invalid test cases
     
   - main.py as the entry point of the program, coordinating all modules by reading input, computing the need matrix, running the safety algorithm, and producing the final output
     
